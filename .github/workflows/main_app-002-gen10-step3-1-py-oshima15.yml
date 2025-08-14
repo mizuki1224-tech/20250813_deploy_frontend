@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy Node.js app to Azure Web App - tech0-gen9-step32-webapp-frontend
+name: Build and deploy Node.js app to Azure Web App - app-002-gen10-step3-1-py-oshima15
 
 on:
   push:
@@ -38,6 +38,8 @@ jobs:
           mkdir deploy
           cp -r ./.next/standalone/. ./deploy
           cp -r ./.next/static/. ./deploy/.next/static
+          cp package.json ./deploy/
+          cp web.config ./deploy/
 
       - name: Zip artifact for deployment
         run: zip release.zip ./deploy -r #3
@@ -68,7 +70,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'tech0-gen9-step32-webapp-frontend'
+          app-name: 'app-002-gen10-step3-1-py-oshima15'
           slot-name: 'Production'
           package: ./deploy
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
