@@ -64,6 +64,11 @@ jobs:
       - name: Unzip artifact for deployment
         run: unzip release.zip
       
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
@@ -71,4 +76,3 @@ jobs:
           app-name: 'tech0-gen9-step32-webapp-frontend'
           slot-name: 'Production'
           package: ./deploy #4
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_718598C9C5AF48328C5F64B41696FD40 }}
